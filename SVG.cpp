@@ -1,4 +1,5 @@
 #include "SVG.h"
+#include "histogram.h"
 #include <iostream>
 #include <vector>
 
@@ -37,7 +38,7 @@ void show_histogram_svg(const vector<size_t>& bins, size_t bin_height, size_t bi
     const auto TEXT_BASELINE = 20;
     const auto TEXT_WIDTH = 50;
     const auto BLOCK_WIDTH = 10;
-    if (bin_height*bin_count > IMAGE_HEIGHT)
+    if (! check_height)
         bin_height = IMAGE_HEIGHT / bin_count;
     svg_begin(IMAGE_WIDTH, IMAGE_HEIGHT);
     double top = 0;

@@ -68,8 +68,20 @@ void show_histogram_text(vector<size_t> bins)
     }
     return;
 }
+
+bool check_height (size_t bin_height, size_t bin_count, size_t IMAGE_HEIGHT)
+{
+    if (bin_height*bin_count > IMAGE_HEIGHT)
+        return true;
+    else
+        return false;
+}
+
 void find_minmax(vector<double> numbers, double& min, double& max)
 {
+    if (numbers.size() == 0){
+        return;
+        }
   min = numbers[0];
   max = numbers[0];
     for (double number : numbers)
