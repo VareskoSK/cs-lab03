@@ -29,23 +29,24 @@ void svg_end()
     cout << "</svg>\n";
 }
 
-void show_histogram_svg(const vector<size_t>& bins)
+void show_histogram_svg(const vector<size_t>& bins, size_t bin_height, size_t bin_count)
 {
     const auto IMAGE_WIDTH = 400;
-    const auto IMAGE_HEIGHT = 300;
+    const auto IMAGE_HEIGHT = 700;
     const auto TEXT_LEFT = 20;
     const auto TEXT_BASELINE = 20;
     const auto TEXT_WIDTH = 50;
-    const auto BIN_HEIGHT = 30;
     const auto BLOCK_WIDTH = 10;
+    if (bin_height*bin_count > IMAGE_HEIGHT)
+        bin_height = IMAGE_HEIGHT / bin_count;
     svg_begin(IMAGE_WIDTH, IMAGE_HEIGHT);
     double top = 0;
     for (size_t bin : bins)
     {
     const double bin_width = BLOCK_WIDTH * bin;
     svg_text(TEXT_LEFT, top + TEXT_BASELINE, to_string(bin));
-    svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT, "blue", "blue");
-    top += BIN_HEIGHT;
+    svg_rect(TEXT_WIDTH, top, bin_width, bin_height, "blue", "blue");
+    top += bin_height;
     }
     svg_end();
 }
