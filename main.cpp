@@ -6,31 +6,46 @@
 
 using namespace std;
 
-struct Input {
+struct Input
+{
     vector<double> numbers;
     size_t bin_count;
     size_t bin_height;
 };
 
 Input
-read_input(istream& in, bool prompt) {
+read_input(istream& in, bool prompt)
+{
     Input data;
 
-    if (prompt) cerr << "Enter number count: ";
+    if (prompt)
+        cerr << "Enter number count: ";
     size_t number_count;
     in >> number_count;
-    if (prompt) cerr << "Enter numbers: ";
+    if (prompt)
+        cerr << "Enter numbers: ";
     data.numbers = input_numbers(in, number_count);
-    if (prompt) cerr << "Enter column count: ";
+    if (prompt)
+        cerr << "Enter column count: ";
     in >> data.bin_count;
-    if (prompt) cerr << "Enter bin height: ";
+    if (prompt)
+        cerr << "Enter bin height: ";
     in >> data.bin_height;
 
     return data;
 }
 
-int main()
+int main(int argc, char* argv[])
 {
+    if (argc > 1)
+    {
+        for (int i = 0; i < argc; i++)
+        {
+            cout << "argv[" << i << "] = " << argv[i] << '\n';
+        }
+        return 0;
+    }
+
     curl_global_init(CURL_GLOBAL_ALL);
     const auto input = read_input(cin, true);
     const auto bins = make_histogram(input.numbers, input.bin_count);
