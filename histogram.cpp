@@ -4,6 +4,7 @@
 
 using namespace std;
 
+/*
 vector<double> input_numbers(size_t count)
 {
     vector<double> result(count);
@@ -14,6 +15,19 @@ vector<double> input_numbers(size_t count)
     }
     return result;
 }
+*/
+
+vector<double> input_numbers(istream& in, size_t count)
+{
+    vector<double> result(count);
+    cerr << "Enter numbers: ";
+    for (size_t i = 0; i < count; i++)
+    {
+        in >> result[i];
+    }
+    return result;
+}
+
 vector<size_t> make_histogram(vector<double> numbers, size_t bin_count)
 {
     vector<size_t> bins(bin_count);
@@ -79,13 +93,14 @@ bool check_height (size_t bin_height, size_t bin_count, size_t IMAGE_HEIGHT)
 
 void find_minmax(vector<double> numbers, double& min, double& max)
 {
-    if (numbers.size() == 0){
+    if (numbers.size() == 0)
+    {
         return;
-        }
-  min = numbers[0];
-  max = numbers[0];
+    }
+    min = numbers[0];
+    max = numbers[0];
     for (double number : numbers)
- {
+    {
         if (number < min)
         {
             min = number;
@@ -94,6 +109,6 @@ void find_minmax(vector<double> numbers, double& min, double& max)
         {
             max = number;
         }
- }
- return;
+    }
+    return;
 }
