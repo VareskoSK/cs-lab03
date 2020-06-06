@@ -31,7 +31,13 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
+			<Add directory="curl/include" />
 		</Compiler>
+		<Linker>
+			<Add library="libcurl.dll.a" />
+			<Add directory="curl/lib" />
+		</Linker>
+		<Unit filename=".gitignore" />
 		<Unit filename="SVG.cpp" />
 		<Unit filename="SVG.h" />
 		<Unit filename="histogram.cpp" />
